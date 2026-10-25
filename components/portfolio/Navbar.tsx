@@ -18,19 +18,19 @@ export function Navbar() {
   return (
     <header className="navbar-enter fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
-        <a href="" className="flex items-center gap-2.5 text-lg font-bold tracking-tight">
+        <div className="flex items-center gap-2.5 text-lg font-bold tracking-tight">
           <span className="h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-primary/20 bg-primary/10 transition-transform duration-300 hover:scale-110">
             <img
               src={adilImage}
               alt="mahedi"
-              aria-hidden="true"
+              // aria-hidden="true"
               className="h-full w-full object-cover"
             />
           </span>
           <span>
             MAHEDI HASAN<span className="text-primary">.</span>
           </span>
-        </a>
+        </div>
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map(({ href, label, icon: Icon }, index) => (
             <a
@@ -60,7 +60,7 @@ export function Navbar() {
             console.log("Menu button clicked");
             setOpen((prev) => !prev);
           }}
-          
+
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-navigation"
