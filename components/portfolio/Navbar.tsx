@@ -1,3 +1,5 @@
+'use client'
+
 import { FolderKanban, GraduationCap, House, Mail, Menu, UserRound, Wrench, X } from "lucide-react";
 import { useState } from "react";
 import adilImage from "../../img/adil.png";
