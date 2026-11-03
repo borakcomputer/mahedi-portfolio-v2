@@ -37,6 +37,13 @@ export function Contact() {
             placeholder="Tell me about your project..."
             className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring"
           />
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center  bg-no-repeat"
+            style={{ backgroundImage: "url('public/bg-mane.png')" }}
+          />
+
           <button
             type="submit"
             className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
