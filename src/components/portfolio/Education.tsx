@@ -20,7 +20,7 @@ const education = [
     ongoing: true,
     color: "#22FF88",
     // Diploma te ja ja shikhecho (edit koro)
-    learned: ["HTML", "CSS", "JavaScript", "React", "Node.js", "Databases"],
+    learned: [],
   },
   {
     number: "02",

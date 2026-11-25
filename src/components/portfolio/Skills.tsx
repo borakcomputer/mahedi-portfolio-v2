@@ -1,49 +1,109 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Code2, Database, Layout, Smartphone, ArrowUpRight, Terminal } from "lucide-react";
+import {
+  Code2,
+  Layout,
+  Server,
+  Wrench,
+  ArrowUpRight,
+  Terminal,
+  Rocket,
+  type LucideIcon,
+} from "lucide-react";
+import {
+  SiHtml5,
+  SiCss,
+  SiJavascript,
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiFigma,
+  SiNodedotjs,
+  SiMongodb,
+  SiGithub,
+  SiVercel,
+  SiNetlify,
+} from "react-icons/si";
+import { TbApi, TbBrandVscode, TbDevices } from "react-icons/tb";
 import { animate, motion, useInView, useReducedMotion } from "framer-motion";
 
 // =====================================
 // SKILLS DATA
 // =====================================
 
-const skills = [
+interface SkillItem {
+  name: string;
+  icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
+  brandColor?: string;
+}
+
+interface SkillCategory {
+  icon: LucideIcon;
+  name: string;
+  number: string;
+  file: string;
+  description: string;
+  color: string;
+  items: SkillItem[];
+}
+
+const skills: SkillCategory[] = [
   {
     icon: Code2,
     name: "Frontend",
     number: "01",
     file: "frontend.tsx",
-    description: "Building beautiful and interactive user interfaces.",
+    description: "Building responsive, modern, and interactive user interfaces.",
     color: "#22FF88",
-    items: ["HTML", "CSS", "JavaScript", "React"],
+    items: [
+      { name: "HTML5", icon: SiHtml5, brandColor: "#E34F26" },
+      { name: "CSS3", icon: SiCss, brandColor: "#1572B6" },
+      { name: "JavaScript", icon: SiJavascript, brandColor: "#F7DF1E" },
+      { name: "React", icon: SiReact, brandColor: "#61DAFB" },
+      { name: "TypeScript", icon: SiTypescript, brandColor: "#3178C6" },
+    ],
   },
   {
     icon: Layout,
     name: "UI Design",
     number: "02",
     file: "ui-design.css",
-    description: "Designing clean, modern and responsive experiences.",
+    description: "Designing clean, modern and responsive user experiences.",
     color: "#2DE6B4",
-    items: ["Tailwind CSS", "Responsive Design", "Figma"],
+    items: [
+      { name: "Tailwind CSS", icon: SiTailwindcss, brandColor: "#06B6D4" },
+      { name: "Responsive Design", icon: TbDevices, brandColor: "#2DE6B4" },
+      { name: "Figma", icon: SiFigma, brandColor: "#F24E1E" },
+    ],
   },
   {
-    icon: Database,
-    name: "Backend",
+    icon: Server,
+    name: "Backend & Database",
     number: "03",
-    file: "server.js",
-    description: "Creating powerful server-side applications.",
+    file: "backend.ts",
+    description: "Creating powerful APIs, scalable services, and efficient databases.",
     color: "#7CFF5B",
-    items: ["Node.js", "REST APIs", "Databases"],
+    items: [
+      { name: "Node.js", icon: SiNodedotjs, brandColor: "#5FA04E" },
+      { name: "REST API", icon: TbApi, brandColor: "#2DE6B4" },
+      { name: "MongoDB", icon: SiMongodb, brandColor: "#47A248" },
+    ],
   },
   {
-    icon: Smartphone,
+    icon: Wrench,
     name: "Tools",
     number: "04",
     file: "workflow.sh",
-    description: "Tools that help me build and ship projects.",
+    description: "Essential tools and platforms for building, deploying, and shipping.",
     color: "#35F0D0",
-    items: ["Git & GitHub", "VS Code", "Deployment"],
+    items: [
+      { name: "Git & GitHub", icon: SiGithub, brandColor: "#F05032" },
+      { name: "VS Code", icon: TbBrandVscode, brandColor: "#007ACC" },
+      { name: "Vercel", icon: SiVercel, brandColor: "#FFFFFF" },
+      { name: "Netlify", icon: SiNetlify, brandColor: "#00C7B7" },
+      { name: "Deployment", icon: Rocket, brandColor: "#35F0D0" },
+    ],
   },
 ];
 
@@ -51,7 +111,15 @@ const skills = [
 // COUNT UP (numbers count from 0)
 // =====================================
 
-function CountUp({ to, start, reduceMotion }: { to: number; start: boolean; reduceMotion: boolean | null }) {
+function CountUp({
+  to,
+  start,
+  reduceMotion,
+}: {
+  to: number;
+  start: boolean;
+  reduceMotion: boolean | null;
+}) {
   const [value, setValue] = useState(reduceMotion ? to : 0);
 
   useEffect(() => {
@@ -111,16 +179,14 @@ function SkillCard({ skill, index }: { skill: (typeof skills)[number]; index: nu
       style={{ transformPerspective: 900 }}
       className="group relative h-full"
     >
-      <div className="relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-2xl border border-emerald-400/15 bg-[#070d0b]/80 shadow-[0_8px_40px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 group-hover:border-emerald-400/50 group-hover:shadow-[0_0_45px_rgba(34,255,136,0.18)]">
+      <div className="relative flex h-full min-h-[340px] flex-col overflow-hidden rounded-2xl border border-emerald-400/15 bg-[#070d0b]/80 shadow-[0_8px_40px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 group-hover:border-emerald-400/50 group-hover:shadow-[0_0_45px_rgba(34,255,136,0.18)]">
         {/* Scan line (hover korle upor theke niche jay) */}
         {!reduceMotion && (
           <motion.div
             aria-hidden="true"
             initial={{ top: "0%", opacity: 0 }}
             animate={
-              hovered
-                ? { top: ["0%", "100%"], opacity: [0, 1, 1, 0] }
-                : { top: "0%", opacity: 0 }
+              hovered ? { top: ["0%", "100%"], opacity: [0, 1, 1, 0] } : { top: "0%", opacity: 0 }
             }
             transition={{ duration: 1.2, ease: "linear" }}
             className="pointer-events-none absolute left-0 z-20 h-px w-full"
@@ -203,7 +269,7 @@ function SkillCard({ skill, index }: { skill: (typeof skills)[number]; index: nu
 
           {/* Heading */}
           <div className="mt-7">
-            <h3 className="text-2xl font-extrabold italic tracking-tight text-white">
+            <h3 className="text-xl font-extrabold italic tracking-tight text-white sm:text-2xl">
               {skill.name}
             </h3>
 
@@ -229,29 +295,37 @@ function SkillCard({ skill, index }: { skill: (typeof skills)[number]; index: nu
             </p>
 
             <div className="flex flex-wrap gap-2">
-              {skill.items.map((item, itemIndex) => (
-                <motion.span
-                  key={item}
-                  initial={reduceMotion ? false : { opacity: 0, scale: 0.6, y: 10 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  whileHover={reduceMotion ? undefined : { y: -3, scale: 1.08 }}
-                  transition={{
-                    delay: 0.5 + index * 0.14 + itemIndex * 0.08,
-                    type: "spring",
-                    stiffness: 260,
-                    damping: 16,
-                  }}
-                  className="cursor-default rounded-md border px-3 py-1.5 font-mono text-xs font-semibold transition-colors duration-300 group-hover:bg-emerald-400/10"
-                  style={{
-                    color: skill.color,
-                    borderColor: `${skill.color}40`,
-                    backgroundColor: `${skill.color}0D`,
-                  }}
-                >
-                  {item}
-                </motion.span>
-              ))}
+              {skill.items.map((item, itemIndex) => {
+                const ItemIcon = item.icon;
+                return (
+                  <motion.span
+                    key={item.name}
+                    initial={reduceMotion ? false : { opacity: 0, scale: 0.6, y: 10 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    whileHover={reduceMotion ? undefined : { y: -3, scale: 1.08 }}
+                    transition={{
+                      delay: 0.5 + index * 0.14 + itemIndex * 0.08,
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 16,
+                    }}
+                    className="inline-flex items-center gap-1.5 cursor-default rounded-md border px-2.5 py-1.5 font-mono text-xs font-semibold transition-colors duration-300 group-hover:bg-emerald-400/10"
+                    style={{
+                      color: skill.color,
+                      borderColor: `${skill.color}40`,
+                      backgroundColor: `${skill.color}0D`,
+                    }}
+                  >
+                    <ItemIcon
+                      size={14}
+                      style={{ color: item.brandColor || skill.color }}
+                      className="shrink-0 transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <span>{item.name}</span>
+                  </motion.span>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -353,7 +427,7 @@ export function Skills() {
       />
 
       {/* ============ CONTENT ============ */}
-      <div className="relative mx-auto max-w-6xl px-4 md:px-6">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section heading */}
         <div className="mb-16 max-w-3xl text-left">
           {/* Label */}
@@ -456,11 +530,17 @@ export function Skills() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#22ff88]" />
             </span>
             <span>
-              <CountUp to={4} start={statsInView} reduceMotion={reduceMotion} /> Categories
+              <CountUp to={skills.length} start={statsInView} reduceMotion={reduceMotion} />{" "}
+              Categories
             </span>
             <span className="mx-1 text-emerald-400">•</span>
             <span>
-              <CountUp to={14} start={statsInView} reduceMotion={reduceMotion} /> Skills
+              <CountUp
+                to={skills.reduce((acc, s) => acc + s.items.length, 0)}
+                start={statsInView}
+                reduceMotion={reduceMotion}
+              />{" "}
+              Skills
             </span>
           </div>
         </motion.div>
@@ -510,3 +590,4 @@ export function Skills() {
     </section>
   );
 }
+ 

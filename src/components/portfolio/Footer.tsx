@@ -295,14 +295,14 @@ export function Footer() {
               >
                 <Phone className="h-4 w-4 shrink-0" />
               </motion.span>
-              01949853773
+              +8801949853773
             </motion.a>
           </motion.div>
 
           <motion.a
             variants={itemFromLeft}
             whileHover={reduceMotion ? undefined : { x: 5 }}
-            href="https://wa.me/8801949853773"
+            href="https://wa.me/+8801949853773"
             target="_blank"
             rel="noreferrer"
             className="mt-4 inline-flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-primary"
