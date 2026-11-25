@@ -59,8 +59,8 @@ const skills: SkillCategory[] = [
     items: [
       { name: "HTML5", icon: SiHtml5, brandColor: "#E34F26" },
       { name: "CSS3", icon: SiCss, brandColor: "#1572B6" },
-      { name: "JavaScript", icon: SiJavascript, brandColor: "#F7DF1E" },
       { name: "React", icon: SiReact, brandColor: "#61DAFB" },
+      { name: "JavaScript", icon: SiJavascript, brandColor: "#F7DF1E" },
       { name: "TypeScript", icon: SiTypescript, brandColor: "#3178C6" },
     ],
   },
@@ -73,8 +73,9 @@ const skills: SkillCategory[] = [
     color: "#2DE6B4",
     items: [
       { name: "Tailwind CSS", icon: SiTailwindcss, brandColor: "#06B6D4" },
-      { name: "Responsive Design", icon: TbDevices, brandColor: "#2DE6B4" },
       { name: "Figma", icon: SiFigma, brandColor: "#F24E1E" },
+      { name: "Responsive Design", icon: TbDevices, brandColor: "#2DE6B4" },
+      
     ],
   },
   {

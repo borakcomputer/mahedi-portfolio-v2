@@ -272,7 +272,7 @@ export function Hero() {
           </motion.p>
 
           {/* Heading (line reveal + waving hand + glowing name + typed line) */}
-          <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
             <span className="block overflow-hidden pb-1">
               <motion.span variants={lineReveal} className="block">
                 Hi,{" "}

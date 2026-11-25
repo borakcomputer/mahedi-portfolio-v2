@@ -1,9 +1,9 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 
 import {
+  Download,
   FolderKanban,
   GraduationCap,
   House,
@@ -62,10 +62,7 @@ export function Navbar() {
     requestAnimationFrame(() => {
       const headerOffset = 85;
 
-      const targetPosition =
-        target.getBoundingClientRect().top +
-        window.scrollY -
-        headerOffset;
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerOffset;
 
       window.scrollTo({
         top: Math.max(0, targetPosition),
@@ -113,9 +110,7 @@ export function Navbar() {
   // Active section detection
   useEffect(() => {
     const elements = links
-      .map(({ href }) =>
-        document.getElementById(href.substring(1))
-      )
+      .map(({ href }) => document.getElementById(href.substring(1)))
       .filter(Boolean);
 
     if (!elements.length) return;
@@ -131,7 +126,7 @@ export function Navbar() {
       {
         rootMargin: "-25% 0px -65% 0px",
         threshold: 0,
-      }
+      },
     );
 
     elements.forEach((element) => observer.observe(element));
@@ -233,10 +228,7 @@ export function Navbar() {
         </a>
 
         {/* DESKTOP NAVIGATION */}
-        <nav
-          aria-label="Main navigation"
-          className="hidden items-center gap-1 lg:flex"
-        >
+        <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
           {links.map(({ href, label, icon: Icon }, index) => {
             const isActive = active === href;
 
@@ -253,9 +245,7 @@ export function Navbar() {
                 }}
                 whileHover={reduceMotion ? undefined : { y: -2 }}
                 className={`group relative isolate inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium transition-colors ${
-                  isActive
-                    ? "text-white"
-                    : "text-slate-400 hover:text-white"
+                  isActive ? "text-white" : "text-slate-400 hover:text-white"
                 }`}
               >
                 {isActive && (
@@ -280,15 +270,18 @@ export function Navbar() {
             );
           })}
 
-          {/* DESKTOP CONTACT BUTTON */}
+          {/* DESKTOP DOWNLOAD CV BUTTON */}
           <motion.a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, "#contact")}
-            whileHover={reduceMotion ? undefined : { y: -3 }}
+            href="/Mahedi_Hasan_CV.pdf"
+            download="MD_Mahedi_Hasan_Adil_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={reduceMotion ? undefined : { y: -3, scale: 1.02 }}
             whileTap={reduceMotion ? undefined : { scale: 0.95 }}
-            className="ml-4 inline-flex rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-violet-600/25 transition-shadow hover:shadow-xl"
+            className="ml-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-violet-600/25 transition-all hover:shadow-xl hover:shadow-violet-600/40"
           >
-            Contact Me
+            <Download className="h-4 w-4" />
+            <span>Download CV</span>
           </motion.a>
         </nav>
 
@@ -344,9 +337,7 @@ export function Navbar() {
           ease: [0.22, 1, 0.36, 1],
         }}
         className={`overflow-hidden bg-slate-950/95 backdrop-blur-xl lg:hidden ${
-          open
-            ? "pointer-events-auto border-t border-white/10"
-            : "pointer-events-none"
+          open ? "pointer-events-auto border-t border-white/10" : "pointer-events-none"
         }`}
       >
         <div className="px-4 py-4">
@@ -360,11 +351,7 @@ export function Navbar() {
                 tabIndex={open ? 0 : -1}
                 onClick={(e) => handleNavClick(e, href)}
                 initial={false}
-                animate={
-                  open
-                    ? { opacity: 1, x: 0 }
-                    : { opacity: 0, x: -20 }
-                }
+                animate={open ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                 transition={{
                   delay: open && !reduceMotion ? index * 0.04 : 0,
                   duration: reduceMotion ? 0 : 0.25,
@@ -381,20 +368,20 @@ export function Navbar() {
             );
           })}
 
-          {/* MOBILE CONTACT BUTTON */}
+          {/* MOBILE DOWNLOAD CV BUTTON */}
           <motion.a
-            href="#contact"
+            href="/Mahedi_Hasan_CV.pdf"
+            download="MD_Mahedi_Hasan_Adil_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             tabIndex={open ? 0 : -1}
-            onClick={(e) => handleNavClick(e, "#contact")}
+            onClick={() => setOpen(false)}
             initial={false}
-            animate={
-              open
-                ? { opacity: 1, y: 0 }
-                : { opacity: 0, y: 10 }
-            }
-            className="mt-3 flex min-h-12 items-center justify-center rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-600/25"
+            animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-violet-600/25"
           >
-            Contact Me
+            <Download className="h-4 w-4" />
+            <span>Download CV</span>
           </motion.a>
         </div>
       </motion.nav>
